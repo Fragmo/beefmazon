@@ -55,16 +55,19 @@ $marca=$_POST['desplegableMarca'];
 
 
 ///////CONSULTA GORDA DEL INICIO QUE SELECCIONA TODO (NECESITA OPTIMIZAR)////////////
-    $consultaSQL = "SELECT * FROM productos $where";
+    $consultaSQL = "SELECT * FROM productos";
     
     $consultaProductos = mysqli_query($creaConexion,$consultaSQL);
     $arrayProductos = mysqli_fetch_all($consultaProductos);
     //print_r(count($consultaProductos));
 
-function muestraConsultaFiltrada($consultaSQL, $creaConexion ){
-    print_r($consultaSQL);
+function muestraConsultaFiltrada($where, $creaConexion ){
+    $consultaSQL = "SELECT * FROM productos $where";
+    print_r("ESTO ES EL WHERE ".$where. "<BR>");
+    print_r("ESTO ES LA CONSULTA $consultaSQL <BR>");
     $consultaProductos = mysqli_query($creaConexion, $consultaSQL);
     $arrayProductos = mysqli_fetch_all($consultaProductos);
+    print_r($arrayProductos);
     
         for ($i = 0; $i < count($arrayProductos); $i++) { 
 //        $codigo = $productos[$i][0];
@@ -135,8 +138,8 @@ function realizaConsultaGeneral($arrayProductos){
                 <div class="col-md-2 text-center" id="contenedorListaDesplegableRopa" style="background-color: red; margin: 0;  " >
                     <h3>Ropa</h3>
                     <select name="desplegableRopa">
-                    <option></option>
-                    <option value="camisetas">Camisetas</option>
+                    <option value=""></option>
+                    <option value="camiseta">Camisetas</option>
                     <option value="pantalones">Pantalones</option>
                     <option value="zapatos">Zapatos</option>
                 </select>
@@ -146,7 +149,7 @@ function realizaConsultaGeneral($arrayProductos){
                 <div class="col-md-2 text-center" id="contenedorListaDesplegableSexo" style="background-color: green; margin: 0; " >
                     <h3>Sexo</h3>
                     <select name="desplegableSexo">
-                        <option value="camisetas"></option>
+                        <option value=""></option>
                         <option value="hombre">Hombre</option>
                         <option value="mujer">Mujer</option>
                         <option value="unisex">Unisex</option>
@@ -156,7 +159,7 @@ function realizaConsultaGeneral($arrayProductos){
                 <div class="col-md-2 text-center" id="contenedorListaPrecio" style="background-color: yellow ; margin: 0;">
                     <h3>Precio</h3>
                     <select name="desplegablePrecio">
-                        <option value="camisetas"></option>
+                        <option value=""></option>
                         <option value="caro">Caro</option>
                         <option value="medio">Medio</option>
                         <option value="barato">Barato</option>
@@ -166,7 +169,7 @@ function realizaConsultaGeneral($arrayProductos){
                 <div class="col-md-2 text-center" id="contenedorListaMarca" style="background-color: blue; margin: 0;">
                     <h3>Marca</h3>
                     <select name="desplegableMarca">
-                        <option></option>
+                        <option value=""></option>
                         <option value="adidas">Adidas</option>
                         <option value="nike">Nike</option>
                         <option value="newBalance">New Balance</option>
@@ -184,10 +187,10 @@ function realizaConsultaGeneral($arrayProductos){
                     <?php
                     //////////////CONSULTA CON FILTROS//////////////
                     if (isset($_POST['botonFiltro'])){
-                        $where="where nombre like '".$ropa."%' and precioFiltro='".$precio."'"
-                        . "'and marca='".$marca."'";
+                        $where="where nombre='$ropa' and precioFiltro='$precio'
+                         and marca='$marca'";
                // print_r($where);
-                    muestraConsultaFiltrada($consultaSQL, $creaConexion );
+                    muestraConsultaFiltrada($where, $creaConexion );
                         
                     }else{
                         //llamada para mostrar la consulta general
