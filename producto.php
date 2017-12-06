@@ -44,9 +44,6 @@ $contrasena = $_SESSION['contraseña'];
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="js/jquery.raty.css" rel="stylesheet" type="text/css"/>
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        <style>
-        </style>
-        <script src="js/verbos.js" type="text/javascript"></script>
         <script src="js/jquery.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script src="js/jquery.raty.js" type="text/javascript"></script>
@@ -80,7 +77,7 @@ $contrasena = $_SESSION['contraseña'];
                 die("<p>no ha sido posible insertar datos en la tabla . $creaConexion->error <BR>");
                 
             }else{
-                echo ' <script language="javascript">alert("Se ha realizado correctamente la compra ");</script> ';
+                echo ' <script language="javascript">alert("Este articulo se ha añadido a la cesta ");</script> ';
             }
         } ?>
     </body>

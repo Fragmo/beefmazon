@@ -24,9 +24,7 @@ require './VariablesSession.php';
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="js/jquery.raty.css" rel="stylesheet" type="text/css"/>
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        <style>
-        </style>
-        <script src="js/verbos.js" type="text/javascript"></script>
+        <link href="css/propioCssTienda.css" rel="stylesheet" type="text/css"/>
         <script src="js/jquery.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script src="js/jquery.raty.js" type="text/javascript"></script>
@@ -38,13 +36,31 @@ require './VariablesSession.php';
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                     <?php
-                    
+
                     //esta consulta es para ver el numero de productos que ha comprado el usuario
-                     $consultaHistorialDeCompra = "SELECT count(idCliente) from cesta where idCliente = $nombreUsuario";
-                     $consultaCestaEjecutada = $creaConexion->query($consultaHistorialDeCompra);
-                     $arrayConsultaHistorialDeCompra = mysqli_fetch_all($consultaCestaEjecutada);
-                     print_r("ESTE ES EL RESULTADO DE LA CONSULTA".$arrayConsultaHistorialDeCompra."<BR>");
-                     echo 'Numero de productos que has comprado'.$arrayConsultaHistorialDeCompra;
+                    $consultaSQLCesta = "select productos.nombre, productos.precio, productos.sexo, productos.marca, productos.codigoFoto from productos join cesta on productos.id = cesta.idProducto join usuarios on usuarios.id = cesta.idCliente where idCliente = $id";
+                    //print_r($consultaSQLCesta);
+                    $ejecucionConsultaCesta = mysqli_query($creaConexion, $consultaSQLCesta);
+                    $arrayCesta = mysqli_fetch_all($ejecucionConsultaCesta);
+                    
+                    
+                    for($i = 0; $i<count($arrayCesta); $i++){
+                        $nombre = $arrayCesta[$i][0];
+                        $precio = $arrayCesta[$i][1];
+                        $sexo = $arrayCesta[$i][2];
+                        $marca = $arrayCesta[$i][3];
+                        $foto = $arrayCesta[$i][4];
+
+                    print <<<hola
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="imagenes/$foto"
+                                <p>$nombre, $marca, $sexo, $precio </p>
+                            </div>
+                            
+                        </div>
+hola;
+                    }
                      
                     ?>
                 </div>
