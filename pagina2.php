@@ -11,7 +11,8 @@ and open the template in the editor.
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="js/jquery.raty.css" rel="stylesheet" type="text/css"/>
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-
+        <style>
+          img{max-height: 300px; max-width: 300px;}  
         </style>
         <script src="js/verbos.js" type="text/javascript"></script>
         <script src="js/jquery.js" type="text/javascript"></script>
@@ -20,7 +21,6 @@ and open the template in the editor.
 
     </head>
     <body>
-        
         
   
         <?php
@@ -61,6 +61,7 @@ $marca=$_POST['desplegableMarca'];
     $arrayProductos = mysqli_fetch_all($consultaProductos);
     //print_r(count($consultaProductos));
 
+    
 function muestraConsultaFiltrada($where, $creaConexion ){
     $consultaSQL = "SELECT * FROM productos $where";
 //    print_r("ESTO ES EL WHERE ".$where. "<BR>");
@@ -68,26 +69,11 @@ function muestraConsultaFiltrada($where, $creaConexion ){
     $consultaProductos = mysqli_query($creaConexion, $consultaSQL);
     $arrayProductos = mysqli_fetch_all($consultaProductos);
    // print_r($arrayProductos);
-    
-        for ($i = 0; $i < count($arrayProductos); $i++) { 
-//        $codigo = $productos[$i][0];
-        $nombre = $arrayProductos[$i][1];
-        $precio = $arrayProductos[$i][2];
-        //  $stock = $arrayProductos[$i][3];
-        $marca = $arrayProductos[$i][4];
-        $sexo = $arrayProductos[$i][5];
-        $precioFiltro = $arrayProductos[$i][6];
-        $codigoFoto = $arrayProductos[$i][7];//bien hecho hasta aqui
-       
-     print( ' 
-        <div class="col-md-4">
-            <div class="pull-left"><img src="'.$codigoFoto.'"/></div>
-            <div class="pull-left">'.$nombre.'</div><br>
-            <div>'.$precio.' €,<br> '.$marca.',<br> '.$sexo.',<br> precio:'.$precioFiltro.'<br></div>
-            <input type="button" value="Comprar" name="botonComprar" />
-        </div>
-');
-}
+    if(mysqli_num_rows($consultaProductos)==0){
+        echo '<h1 class="text-center">No tenemos productos con estas características</h1>';
+    }else{
+        realizaConsultaGeneral($arrayProductos);
+    }
 }
 //CODIGO PARA MOSTRAR LOS PRODUCTOS POR PANTALLA
 function realizaConsultaGeneral($arrayProductos){
@@ -104,7 +90,7 @@ function realizaConsultaGeneral($arrayProductos){
        
      print( ' 
         <div class="col-md-4">
-            <div class="pull-left"><img src="'.$codigoFoto.'"/></div>
+            <div class="pull-left"><img class="img-responsive" src="imagenes/'.$codigoFoto.'"/></div>
             <div class="pull-left">'.$nombre.'</div><br>
             <div>'.$precio.' €,<br> '.$marca.',<br> '.$sexo.',<br> precio:'.$precioFiltro.'<br></div>
             <input type="button" value="Comprar" name="botonComprar" />
@@ -114,15 +100,7 @@ function realizaConsultaGeneral($arrayProductos){
    
 }
 ?> 
-        
-        
-        
-        
-        
-        
-        
-        
-        
+       
 <!---------------HTML------------->
         <div class="row">
             <div class="col-md-3"></div>
