@@ -63,11 +63,11 @@ $marca=$_POST['desplegableMarca'];
 
 function muestraConsultaFiltrada($where, $creaConexion ){
     $consultaSQL = "SELECT * FROM productos $where";
-    print_r("ESTO ES EL WHERE ".$where. "<BR>");
-    print_r("ESTO ES LA CONSULTA $consultaSQL <BR>");
+//    print_r("ESTO ES EL WHERE ".$where. "<BR>");
+//    print_r("ESTO ES LA CONSULTA $consultaSQL <BR>");
     $consultaProductos = mysqli_query($creaConexion, $consultaSQL);
     $arrayProductos = mysqli_fetch_all($consultaProductos);
-    print_r($arrayProductos);
+   // print_r($arrayProductos);
     
         for ($i = 0; $i < count($arrayProductos); $i++) { 
 //        $codigo = $productos[$i][0];
@@ -187,8 +187,8 @@ function realizaConsultaGeneral($arrayProductos){
                     <?php
                     //////////////CONSULTA CON FILTROS//////////////
                     if (isset($_POST['botonFiltro'])){
-                        $where="where nombre='$ropa' and precioFiltro='$precio'
-                         and marca='$marca'";
+                        $where="where nombre LIKE'%$ropa%' and sexo LIKE '%$sexo%' and precioFiltro LIKE'%$precio%'
+                         and marca LIKE'%$marca%'";
                // print_r($where);
                     muestraConsultaFiltrada($where, $creaConexion );
                         
