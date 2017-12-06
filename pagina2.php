@@ -12,13 +12,14 @@ and open the template in the editor.
         <link href="js/jquery.raty.css" rel="stylesheet" type="text/css"/>
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <style>
-          img{max-height: 300px; max-width: 300px;}  
+          img{height: 300px;} 
+          .divConBorde{border-color: #000; border: 15px;}
         </style>
         <script src="js/verbos.js" type="text/javascript"></script>
         <script src="js/jquery.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script src="js/jquery.raty.js" type="text/javascript"></script>
-
+        <!--max-width: 300px;}--->
     </head>
     <body>
         
@@ -79,7 +80,7 @@ function muestraConsultaFiltrada($where, $creaConexion ){
 function realizaConsultaGeneral($arrayProductos){
 
     for ($i = 0; $i < count($arrayProductos); $i++) { 
-//        $codigo = $productos[$i][0];
+        $codigo = $arrayProductos[$i][0];
         $nombre = $arrayProductos[$i][1];
         $precio = $arrayProductos[$i][2];
         //  $stock = $arrayProductos[$i][3];
@@ -89,18 +90,18 @@ function realizaConsultaGeneral($arrayProductos){
         $codigoFoto = $arrayProductos[$i][7];//bien hecho hasta aqui
        
      print( ' 
-        <div class="col-md-4">
-            <div class="pull-left"><img class="img-responsive" src="imagenes/'.$codigoFoto.'"/></div>
-            <div class="pull-left">'.$nombre.'</div><br>
-            <div>'.$precio.' €,<br> '.$marca.',<br> '.$sexo.',<br> precio:'.$precioFiltro.'<br></div>
-            <input type="button" value="Comprar" name="botonComprar" />
+        <div class="col-sm-4 ">
+            <article class="col-item">
+            <div class="pull-left " ><a href="producto.php?codigo='.$codigo.'"><img class="img-responsive" src="imagenes/'.$codigoFoto.'"/></a></div><br>
+            <div class="text-center">'.$nombre.''.$precio.' €,<br> '.$marca.',<br> '.$sexo.',<br> precio:'.$precioFiltro.'<br></div>
+            </article>
         </div>
 ');
    }
    
 }
 ?> 
-       
+
 <!---------------HTML------------->
         <div class="row">
             <div class="col-md-3"></div>
@@ -119,6 +120,7 @@ function realizaConsultaGeneral($arrayProductos){
                     <option value=""></option>
                     <option value="camiseta">Camisetas</option>
                     <option value="pantalones">Pantalones</option>
+                    <option value="calcetines">calcetines</option>
                     <option value="zapatos">Zapatos</option>
                 </select>
                     
@@ -181,5 +183,6 @@ function realizaConsultaGeneral($arrayProductos){
                 <div clas class="col-md-2" style="background-color: pink; "></div>
             </div>
         </div>
+
     </body>
 </html>
