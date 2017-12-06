@@ -12,7 +12,7 @@ and open the template in the editor.
         <link href="js/jquery.raty.css" rel="stylesheet" type="text/css"/>
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <style>
-          img{height: 300px;} 
+           img{max-height: 300px; min-height: 300px; width: 300px;} 
           .divConBorde{border-color: #000; border: 15px;}
         </style>
         <script src="js/verbos.js" type="text/javascript"></script>
@@ -25,11 +25,11 @@ and open the template in the editor.
         
   
         <?php
-        
+        error_reporting(0);
 ///////////////////PHP///////////
         
         
-//session_start();
+session_start();
          define("host", "localhost");
          define("usuario", "root");
          define("contrasena", "");
@@ -51,7 +51,7 @@ $ropa=$_POST['desplegableRopa'];
 $sexo=$_POST['desplegableSexo'];
 $precio=$_POST['desplegablePrecio'];
 $marca=$_POST['desplegableMarca'];
-
+require './VariablesSession.php';
 
 
 
@@ -106,7 +106,7 @@ function realizaConsultaGeneral($arrayProductos){
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6"><h1 class="text-center">BeefMazon</h1></div>
-            <div class="col-md-3"></div>
+            <div class="col-md-3"><a href="usuario.php"><input type="button" class="btn btn-block btn-primary" value="Tu menú,<?PHP echo $nombreUsuario?>" name="menuUsuario" /></a></div>
         </div>
         <!--FILTRADOR-->
         

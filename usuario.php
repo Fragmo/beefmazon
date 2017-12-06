@@ -1,6 +1,7 @@
 <?php        
 ///////////////////PHP///////////    
 session_start();
+require './VariablesSession.php';
          define("host", "localhost");
          define("usuario", "root");
          define("contrasena", "");
@@ -14,32 +15,11 @@ session_start();
         }
 ?>
 <?php
-
-$codigo = $_GET['codigo'];
-$consultaSQL = "SELECT * FROM productos where id=$codigo";
-$consultaEjecutada = $creaConexion->query($consultaSQL);
-$ArrayProductoAqui = mysqli_fetch_all($consultaEjecutada);
-
-// VARIABLES PRODUCTO
-$nombre = $ArrayProductoAqui[0][1];
-$precio = $ArrayProductoAqui[0][2];
-$stock = $ArrayProductoAqui[0][3];
-$marca = $ArrayProductoAqui[0][4];
-$sexo = $ArrayProductoAqui[0][5];
-$precioFiltro = $ArrayProductoAqui[0][6];//bien hecho hasta aqui
-$codigoFoto = $ArrayProductoAqui[0][7];
-
-// VARIABLES USUARIO
-
-$id = ($_SESSION['id']);
-$email = $_SESSION['email'];
-$nombreUsuario =  $_SESSION['nombreUsuario'] ;
-$contrasena = $_SESSION['contraseña'];
 ?>
 
 <html>
     <head>
-        <title><?php echo $nombre.' '. $ArrayProductoAqui[0][4];?></title>
+        <title><?php echo 'Menu de '.$nombreUsuario.'';?></title>
         <meta charset="UTF-8">
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="js/jquery.raty.css" rel="stylesheet" type="text/css"/>
@@ -53,23 +33,24 @@ $contrasena = $_SESSION['contraseña'];
     </head>
     <body>
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class=" cold-md-4 img-responsive">
-                    <img class="img-responsive" src="imagenes/<?Php echo $codigoFoto?>"/>
+            <div class="col-md-12">
+                <p><h2 class="text-center"> Tu cesta</h2></p>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <?php
+                    
+                    //esta consulta es para ver el numero de productos que ha comprado el usuario
+                     $consultaHistorialDeCompra = "SELECT count(idCliente) from cesta where idCliente = $nombreUsuario";
+                     $consultaCestaEjecutada = $creaConexion->query($consultaHistorialDeCompra);
+                     $arrayConsultaHistorialDeCompra = mysqli_fetch_all($consultaCestaEjecutada);
+                     print_r("ESTE ES EL RESULTADO DE LA CONSULTA".$arrayConsultaHistorialDeCompra."<BR>");
+                     echo 'Numero de productos que has comprado'.$arrayConsultaHistorialDeCompra;
+                     
+                    ?>
                 </div>
-                <div class="col-md-4 pull-right">
-                    Nombre: <?php echo $nombre ?> <br>
-                    Marca: <?php echo $marca ?> <br>
-                    Sexo: <?php echo $sexo ?><br>
-                    Precio: <?php echo $precio ?> <br>
-   <!--PONGO UN FORMULARIO PARA HACER QUE SE EJECUTE EL CODIGO DEL ISSET-->
-<form method="Post"><input type="submit" value="Comprar" name="botonComprar" /></form>
-                </div>
+                <div class="col-md-4"></div>
                 
             </div>
-            <div class="col-md-2"></div>
-            
         </div> 
         <?php 
         if(isset($_POST['botonComprar'])){
