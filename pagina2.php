@@ -20,22 +20,125 @@ and open the template in the editor.
 
     </head>
     <body>
+        
+        
+  
+        <?php
+        
+///////////////////PHP///////////
+        
+        
+//session_start();
+         define("host", "localhost");
+         define("usuario", "root");
+         define("contrasena", "");
+         define("bbdd", "beefmazon");
+        
+?>
+
+<?php
+        $creaConexion = new mysqli(host, usuario, contrasena, bbdd);
+        if($creaConexion->errno >0){
+            die("No ha sido posible conectarse a la base de datos [". $creaConexion->connect_error. "]");
+        }
+?>
+
+     <?PHP
+//////////////VARIABLES PARA LAS CONSUTAS///////////
+$where="";
+$ropa=$_POST['desplegableRopa'];		
+$sexo=$_POST['desplegableSexo'];
+$precio=$_POST['desplegablePrecio'];
+$marca=$_POST['desplegableMarca'];
+
+
+
+
+///////CONSULTA GORDA DEL INICIO QUE SELECCIONA TODO (NECESITA OPTIMIZAR)////////////
+    $consultaSQL = "SELECT * FROM productos $where";
+    
+    $consultaProductos = mysqli_query($creaConexion,$consultaSQL);
+    $arrayProductos = mysqli_fetch_all($consultaProductos);
+    //print_r(count($consultaProductos));
+
+function muestraConsultaFiltrada($consultaSQL, $creaConexion ){
+    print_r($consultaSQL);
+    $consultaProductos = mysqli_query($creaConexion, $consultaSQL);
+    $arrayProductos = mysqli_fetch_all($consultaProductos);
+    
+        for ($i = 0; $i < count($arrayProductos); $i++) { 
+//        $codigo = $productos[$i][0];
+        $nombre = $arrayProductos[$i][1];
+        $precio = $arrayProductos[$i][2];
+        //  $stock = $arrayProductos[$i][3];
+        $marca = $arrayProductos[$i][4];
+        $sexo = $arrayProductos[$i][5];
+        $precioFiltro = $arrayProductos[$i][6];
+        $codigoFoto = $arrayProductos[$i][7];//bien hecho hasta aqui
+       
+     print( ' 
+        <div class="col-md-4">
+            <div class="pull-left"><img src="'.$codigoFoto.'"/></div>
+            <div class="pull-left">'.$nombre.'</div><br>
+            <div>'.$precio.' €,<br> '.$marca.',<br> '.$sexo.',<br> precio:'.$precioFiltro.'<br></div>
+            <input type="button" value="Comprar" name="botonComprar" />
+        </div>
+');
+}
+}
+//CODIGO PARA MOSTRAR LOS PRODUCTOS POR PANTALLA
+function realizaConsultaGeneral($arrayProductos){
+
+    for ($i = 0; $i < count($arrayProductos); $i++) { 
+//        $codigo = $productos[$i][0];
+        $nombre = $arrayProductos[$i][1];
+        $precio = $arrayProductos[$i][2];
+        //  $stock = $arrayProductos[$i][3];
+        $marca = $arrayProductos[$i][4];
+        $sexo = $arrayProductos[$i][5];
+        $precioFiltro = $arrayProductos[$i][6];
+        $codigoFoto = $arrayProductos[$i][7];//bien hecho hasta aqui
+       
+     print( ' 
+        <div class="col-md-4">
+            <div class="pull-left"><img src="'.$codigoFoto.'"/></div>
+            <div class="pull-left">'.$nombre.'</div><br>
+            <div>'.$precio.' €,<br> '.$marca.',<br> '.$sexo.',<br> precio:'.$precioFiltro.'<br></div>
+            <input type="button" value="Comprar" name="botonComprar" />
+        </div>
+');
+   }
+   
+}
+?> 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+<!---------------HTML------------->
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6"><h1 class="text-center">BeefMazon</h1></div>
             <div class="col-md-3"></div>
         </div>
         <!--FILTRADOR-->
+        
         <div class="row" >
-            <div class="col-md-12">
+            <form name="formularioFiltro" method="POST">
+                <div class="col-md-12" >
                 <div clas class="col-md-2"></div>
                 <div class="col-md-2 text-center" id="contenedorListaDesplegableRopa" style="background-color: red; margin: 0;  " >
                     <h3>Ropa</h3>
                     <select name="desplegableRopa">
-                    <option><a href="pagina2SQL.">Todo</a></option>
-                    <option>Camisetas</option>
-                    <option>Pantalones</option>
-                    <option>Zapatos</option>
+                    <option></option>
+                    <option value="camisetas">Camisetas</option>
+                    <option value="pantalones">Pantalones</option>
+                    <option value="zapatos">Zapatos</option>
                 </select>
                     
                 </div>
@@ -43,59 +146,59 @@ and open the template in the editor.
                 <div class="col-md-2 text-center" id="contenedorListaDesplegableSexo" style="background-color: green; margin: 0; " >
                     <h3>Sexo</h3>
                     <select name="desplegableSexo">
-                        <option>Todo</option>
-                        <option>Hombre</option>
-                        <option>Mujer</option>
+                        <option value="camisetas"></option>
+                        <option value="hombre">Hombre</option>
+                        <option value="mujer">Mujer</option>
+                        <option value="unisex">Unisex</option>
                     </select>
                 </div>
                 
-                <div class="col-md-2 text-center" id="contenedorListaDesplegableSexo" style="background-color: yellow ; margin: 0;">
+                <div class="col-md-2 text-center" id="contenedorListaPrecio" style="background-color: yellow ; margin: 0;">
                     <h3>Precio</h3>
                     <select name="desplegablePrecio">
-                        <option>Todo</option>
-                        <option>Caro</option>
-                        <option>Medio</option>
-                        <option>Barato</option>
+                        <option value="camisetas"></option>
+                        <option value="caro">Caro</option>
+                        <option value="medio">Medio</option>
+                        <option value="barato">Barato</option>
                     </select>
                 </div>
                 
-                <div class="col-md-2 text-center" id="contenedorListaDesplegableSexo" style="background-color: blue; margin: 0;">
+                <div class="col-md-2 text-center" id="contenedorListaMarca" style="background-color: blue; margin: 0;">
                     <h3>Marca</h3>
                     <select name="desplegableMarca">
-                        <option>Todo</option>
-                        <option>Adidas</option>
-                        <option>Nike</option>
-                        <option>New Balance</option>
+                        <option></option>
+                        <option value="adidas">Adidas</option>
+                        <option value="nike">Nike</option>
+                        <option value="newBalance">New Balance</option>
+                      
                     </select>
                 </div>
                 <div clas class="col-md-2"></div>
             </div><!-- Fin del filtrado-->
-            
+            <input style="margin-left: 48%;" type="submit" value="Buscar" name="botonFiltro" />
+        </form><br/><br/><br/> 
             <!--PRODUCTOS-->
             <div class="row">
                 <div clas class="col-md-2" style="background-color: pink"></div>
-                <div class="col-md-8" id="contenedorProductos"></div>
+                <div class="col-md-8" id="contenedorProductos">
+                    <?php
+                    //////////////CONSULTA CON FILTROS//////////////
+                    if (isset($_POST['botonFiltro'])){
+                        $where="where nombre like '".$ropa."%' and precioFiltro='".$precio."'"
+                        . "'and marca='".$marca."'";
+               // print_r($where);
+                    muestraConsultaFiltrada($consultaSQL, $creaConexion );
+                        
+                    }else{
+                        //llamada para mostrar la consulta general
+                        realizaConsultaGeneral($arrayProductos );
+                    }
+                    
+                    
+                    ?> 
+                </div>
                 <div clas class="col-md-2" style="background-color: pink; "></div>
             </div>
         </div>
-       
-        
-        <?php
-         //   require 'pagina2SQL.php';
-        ?>
-        
-        
-       
-    <script>
-       // cargaProductos();
-        
-        function cargaProductos(){
-            $('#contenedorProductos').append('<div class="row" id="rowProductos"></div');
-            for(var i = 0; i<8; i++){
-               $('#rowProductos').append('<div class="col-md-4" style=" background-color: red;">hossssssssssssssla</div>'); 
-            }
-            
-        }
-    </script>
     </body>
 </html>
