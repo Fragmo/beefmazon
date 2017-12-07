@@ -65,7 +65,9 @@ $contrasena = $_SESSION['contraseña'];
                 </div>
                 
             </div>
-            <div class="col-md-2"></div>
+            <div class="col-md-2">
+                <a href="pagina2.php"><input type="button" value="Atras" name="botonAtras" /></a>
+            </div>
             
         </div> 
         <?php 

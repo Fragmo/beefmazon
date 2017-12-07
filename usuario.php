@@ -14,8 +14,7 @@ require './VariablesSession.php';
             die("No ha sido posible conectarse a la base de datos [". $creaConexion->connect_error. "]");
         }
 ?>
-<?php
-?>
+
 
 <html>
     <head>
@@ -30,6 +29,9 @@ require './VariablesSession.php';
         <script src="js/jquery.raty.js" type="text/javascript"></script>
     </head>
     <body>
+
+        
+        
         <div class="row">
             <div class="col-md-12">
                 <p><h2 class="text-center"> Tu cesta</h2></p>
@@ -38,7 +40,7 @@ require './VariablesSession.php';
                     <?php
 
                     //esta consulta es para ver el numero de productos que ha comprado el usuario
-                    $consultaSQLCesta = "select productos.nombre, productos.precio, productos.sexo, productos.marca, productos.codigoFoto from productos join cesta on productos.id = cesta.idProducto join usuarios on usuarios.id = cesta.idCliente where idCliente = $id";
+                    $consultaSQLCesta = "select  productos.nombre, productos.precio, productos.sexo, productos.marca, productos.codigoFoto, productos.id from productos join cesta on productos.id = cesta.idProducto join usuarios on usuarios.id = cesta.idCliente where idCliente = $id";
                     //print_r($consultaSQLCesta);
                     $ejecucionConsultaCesta = mysqli_query($creaConexion, $consultaSQLCesta);
                     $arrayCesta = mysqli_fetch_all($ejecucionConsultaCesta);
@@ -50,12 +52,13 @@ require './VariablesSession.php';
                         $sexo = $arrayCesta[$i][2];
                         $marca = $arrayCesta[$i][3];
                         $foto = $arrayCesta[$i][4];
-
+                        $idProducto = $arrayCesta[$i][5];
                     print <<<hola
                         <div class="row">
                             <div class="col-md-4">
                                 <img src="imagenes/$foto"
                                 <p>$nombre, $marca, $sexo, $precio </p>
+                          <a href="confirmarCompra.php?idProductoo=$idProducto"><input type="button" value="Confirmar" name="$i" /></a>
                             </div>
                             
                         </div>

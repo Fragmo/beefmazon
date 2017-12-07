@@ -101,7 +101,7 @@ function realizaConsultaGeneral($arrayProductos){
 <!---------------HTML------------->
         <div class="row">
             <div class="col-md-3"></div>
-            <div class="col-md-6"><h1 class="text-center">BeefMazon</h1></div>
+            <div class="col-md-6"><a href="pagina2.php"><h1 class="text-center">BeefMazon</h1></a></div>
             <div class="col-md-3">
                 <a href="usuario.php"><input type="button" class="btn btn-primary" value="Tu menú,<?PHP echo $nombreUsuario?>" name="menuUsuario" /></a>
                 <a href="cerrarSesion.php"><input type="button" class="btn btn-danger" value="Salir" name="botonCerrarSesion" /></a>

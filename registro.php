@@ -23,18 +23,29 @@ and open the template in the editor.
                 <div class="col-md-3"></div>
                 <div class="col-md-6 " style="background-color: #ff0; margin-top: 10%">
                     <h1 class="text-center">BeefMazon</h1>
-                    <form name="formularioLogin" action="loginToGuapo.php" method="POST">
+                    <form name="formularioLogin" action="registroToGuapo.php" method="POST">
                     <table border="0" cellspacing="1"  style="margin: 0 auto;" >
                     <tbody>
                         <tr>
+                            <td>Email</td>
+                            <td> <input type="email" name="emailRegistro" required="yeah" placeholder="alguien@example.com" width="15%"/></td>
+                        </tr>
+                        
+                        <tr>
                             <td>Usuario</td>
-                            <td> <input type="text" name="nombreUsuario" required="yeah" value="wacamole" placeholder="ej:pepito" width="15%" /> </td>
+                            <td> <input type="text" name="nombreUsuarioRegistro" required="yeah" placeholder="ej:pepito" width="15%" /> </td>
                         </tr>         
                         
                         <tr>
                             <td>Contrasenña</td>
-                            <td> <input type="password" name="contrasena" required="yeah" value="waca" width="15%"/></td>
+                            <td> <input type="password" name="contrasenaRegistro" required="yeah" placeholder="****" width="15%"/></td>
                         </tr>
+                        
+                        <tr>
+                            <td>Repite la contrasenña</td>
+                            <td> <input type="password" name="confirmaContrasenaRegistro" required="yeah" placeholder="****"  width="15%"/></td>
+                        </tr>
+                        
                         
                         <tr>
                             <td></td>
@@ -45,7 +56,6 @@ and open the template in the editor.
                     </table>
                 
                 </form>
-                    <a href="registro.php"><input type="button" value="Registrarse" name="botonRegistro" /></a>
                 </div>
                 <div class="col-md-3"></div>
 
@@ -55,3 +65,5 @@ and open the template in the editor.
         ?>
     </body>
 </html>
+
+
