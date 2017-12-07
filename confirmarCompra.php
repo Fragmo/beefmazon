@@ -32,5 +32,5 @@ require './VariablesSession.php';
             }else{
                // $consultaActualizaStock = ""
             }
-      echo "<script>location.href='pagina2.php'</script>";
+      echo "<script>location.href='usuario.php?confirmaCompra=true'</script>";
 ?>

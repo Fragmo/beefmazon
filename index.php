@@ -16,14 +16,17 @@ and open the template in the editor.
         <script src="js/jquery.raty.js" type="text/javascript"></script>
 
     </head>
-    <body>
+    <body style="background-image: url(imagenes/fondoDePantallaBeefmazonFinal.jpg); background-size: cover; background-repeat: no-repeat;">
         <div id="divFormulario">
             
             <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6 " style="background-color: #ff0; margin-top: 10%">
-                    <h1 class="text-center">BeefMazon</h1>
-                    <form name="formularioLogin" action="loginToGuapo.php" method="POST">
+                <div class="col-md-4"></div>
+                <div class="col-md-4 " >
+                    
+                    <h1 class="text-center" style="color: blueviolet">BeefMazon</h1>
+                    <form style="background-color: #999999;" name="formularioLogin" action="loginToGuapo.php" method="POST">
+                    <h1 style="margin-top: 10%; margin-bottom: 10%" class="text-center">Tenemos todos los productos</h1>
+                    
                     <table border="0" cellspacing="1"  style="margin: 0 auto;" >
                     <tbody>
                         <tr>
@@ -38,16 +41,15 @@ and open the template in the editor.
                         
                         <tr>
                             <td></td>
-                            <td> <input type="submit" class="btn btn-success" value="enviar" name="botonEnviar" /> <input type="reset" class="btn btn-danger" value="borrar" name="botonBorrar" /></td>  
+                            <td> <input type="submit" class="btn btn-success" value="enviar" name="botonEnviar" /> <input type="reset" class="btn btn-danger" value="borrar" name="botonBorrar" /><a href="registro.php"><input class="btn btn-info pull-right" style="margin-left: 3px;" type="button" value="Registrarse" name="botonRegistro" /></a>
+</td>  
                         </tr>
-
-                    </tbody>
+                    </tbody>   
                     </table>
-                
                 </form>
-                    <a href="registro.php"><input type="button" value="Registrarse" name="botonRegistro" /></a>
+                    
                 </div>
-                <div class="col-md-3"></div>
+                <div class="col-md-4"></div>
 
        
         <?php

@@ -116,7 +116,7 @@ function realizaConsultaGeneral($arrayProductos){
                 <div clas class="col-md-2"></div>
                 <div class="col-md-2 text-center" id="contenedorListaDesplegableRopa" style="background-color: red; margin: 0;  " >
                     <h3>Ropa</h3>
-                    <select name="desplegableRopa">
+                    <select  name="desplegableRopa">
                     <option value=""></option>
                     <option value="camiseta">Camisetas</option>
                     <option value="pantalones">Pantalones</option>
@@ -162,7 +162,7 @@ function realizaConsultaGeneral($arrayProductos){
         </form><br/><br/><br/> 
             <!--PRODUCTOS-->
             <div class="row">
-                <div clas class="col-md-2" style="background-color: pink"></div>
+                <div clas class="col-md-2"></div>
                 <div class="col-md-8" id="contenedorProductos">
                     <?php
                     //////////////CONSULTA CON FILTROS//////////////
@@ -180,7 +180,7 @@ function realizaConsultaGeneral($arrayProductos){
                     
                     ?> 
                 </div>
-                <div clas class="col-md-2" style="background-color: pink; "></div>
+                <div clas class="col-md-2"></div>
             </div>
         </div>
 

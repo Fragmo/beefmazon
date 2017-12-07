@@ -13,6 +13,8 @@ require './VariablesSession.php';
         if($creaConexion->errno >0){
             die("No ha sido posible conectarse a la base de datos [". $creaConexion->connect_error. "]");
         }
+        
+
 ?>
 
 
@@ -29,7 +31,15 @@ require './VariablesSession.php';
         <script src="js/jquery.raty.js" type="text/javascript"></script>
     </head>
     <body>
-
+        <div class="row">
+            <header>
+            <div class="col-md-3"></div>
+            <div class="col-md-6"><a href="pagina2.php"><h1 class="text-center">BeefMazon</h1></a></div>
+            <div class="col-md-3">
+                <a href="usuario.php"><input type="button" class=" btn-primary" value="Tu menú,<?PHP echo $nombreUsuario?>" name="menuUsuario" /></a>
+                <a href="cerrarSesion.php"><input type="button" class="btn btn-danger" value="Salir" name="botonCerrarSesion" /></a>
+            </header>
+         </div>
         
         
         <div class="row">
@@ -53,6 +63,8 @@ require './VariablesSession.php';
                         $marca = $arrayCesta[$i][3];
                         $foto = $arrayCesta[$i][4];
                         $idProducto = $arrayCesta[$i][5];
+                        
+                        
                     print <<<hola
                         <div class="row">
                             <div class="col-md-4">
@@ -83,5 +95,11 @@ hola;
                 echo ' <script language="javascript">alert("Se ha realizado correctamente la compra ");</script> ';
             }
         } ?>
+      <?php  
+         if(isset($_GET['confirmaCompra'])){
+         echo ' <script language="javascript">alert("Pedido realizado");</script> ';
+        }
+        
+        ?>
     </body>
 </html>

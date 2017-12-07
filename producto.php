@@ -42,6 +42,7 @@ $contrasena = $_SESSION['contraseña'];
         <title><?php echo $nombre.' '. $ArrayProductoAqui[0][4];?></title>
         <meta charset="UTF-8">
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/propioCssTienda.css" rel="stylesheet" type="text/css"/>
         <link href="js/jquery.raty.css" rel="stylesheet" type="text/css"/>
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <script src="js/jquery.js" type="text/javascript"></script>
@@ -50,25 +51,64 @@ $contrasena = $_SESSION['contraseña'];
     </head>
     <body>
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
+            <div class="col-md-3"></div>
+            <div class="col-md-6"><a href="pagina2.php"><h1 class="text-center">BeefMazon</h1></a></div>
+            <div class="col-md-3">
+                <a href="usuario.php"><input type="button" class="btn btn-primary" value="Tu menú,<?PHP echo $nombreUsuario?>" name="menuUsuario" /></a>
+                <a href="cerrarSesion.php"><input type="button" class="btn btn-danger" value="Salir" name="botonCerrarSesion" /></a>
+
+        </div> 
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
                 <div class=" cold-md-4 img-responsive">
-                    <img class="img-responsive" src="imagenes/<?Php echo $codigoFoto?>"/>
-                </div>
-                <div class="col-md-4 pull-right">
-                    Nombre: <?php echo $nombre ?> <br>
-                    Marca: <?php echo $marca ?> <br>
-                    Sexo: <?php echo $sexo ?><br>
-                    Precio: <?php echo $precio ?> <br>
+                    <img class="img-responsive " style="margin-left: 15%;"src="imagenes/<?Php echo $codigoFoto?>"/>
+                    <div class="row">
+                        <div class="col-md-4 pull-left" style="margin-left: 20%">
+                            Nombre: <?php echo $nombre ?> <br>
+                            Marca: <?php echo $marca ?> <br>
+                            Sexo: <?php echo $sexo ?><br>
+                            Precio: <?php echo $precio ?> <br>
    <!--PONGO UN FORMULARIO PARA HACER QUE SE EJECUTE EL CODIGO DEL ISSET-->
-<form method="Post"><input type="submit" value="Comprar" name="botonComprar" /></form>
+        <form method="Post"><input type="submit" value="Comprar" name="botonComprar" /></form>
+               
+                        </div>
+                    </div>
                 </div>
                 
+                
             </div>
-            <div class="col-md-2">
+        </div>
+            <div class="col-md-4">
                 <a href="pagina2.php"><input type="button" value="Atras" name="botonAtras" /></a>
             </div>
-            
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="text-center">Productos Relacionados</h2>
+                    <?php 
+                $consultaProductosRelacionados = "SELECT * FROM productos WHERE nombre = '$nombre' or marca='$marca'";
+                $ejecutarProductosRelacionados = $creaConexion->query($consultaProductosRelacionados);
+                $arrayProductosRelacionados = mysqli_fetch_all($ejecutarProductosRelacionados);
+                for($l = 0; $l<count($arrayProductosRelacionados); $l++){
+                    $idRelacionado = $arrayProductosRelacionados[$l][0];
+                   // $nombreRelacionado = $arrayProductosRelacionados[$l][1];
+                   // $precioRelacionado  = $arrayProductosRelacionados[$l][2];
+                   // $stockRelacionado  = $arrayProductosRelacionados[$l][3];
+                   // $marcaRelacionado  = $arrayProductosRelacionados[$l][4];
+                   // $sexoRelacionado  = $arrayProductosRelacionados[$l][5];
+                   // $precioFiltroRelacionado  = $arrayProductosRelacionados[$l][6];//bien hecho hasta aqui
+                    $codigoFotoRelacionado = $arrayProductosRelacionados[$l][7];
+                   print <<<hola
+                    <div class="col-md-3 img-responsive" pull-left style="margin-left : 15px;">
+                        <a href="producto.php?codigo=$idRelacionado"><img style="height: 300px; width : 300px;"class=img-responsive src="imagenes/$codigoFotoRelacionado"/></a>
+                    </div>
+hola;
+                }
+                
+                ?>
+                </div>
+                 
+            </div>
         </div> 
         <?php 
         if(isset($_POST['botonComprar'])){
