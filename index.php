@@ -41,7 +41,7 @@ and open the template in the editor.
                         
                         <tr>
                             <td></td>
-                            <td> <input type="submit" class="btn btn-success" value="enviar" name="botonEnviar" /> <input type="reset" class="btn btn-danger" value="borrar" name="botonBorrar" /><a href="registro.php"><input class="btn btn-info pull-right" style="margin-left: 3px;" type="button" value="Registrarse" name="botonRegistro" /></a>
+                            <td> <input type="submit"  class="btn btn-success" value="enviar" name="botonEnviar" /> <input type="reset" class="btn btn-danger" value="borrar" name="botonBorrar" /><a href="registro.php"><input class="btn btn-info pull-right" style="margin-left: 3px;" type="button" value="Registrarse" name="botonRegistro" /></a>
 </td>  
                         </tr>
                     </tbody>   

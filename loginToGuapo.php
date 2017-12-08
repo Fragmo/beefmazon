@@ -32,9 +32,11 @@ session_start(); // iniciamos sesion
                 echo "<script>location.href='pagina2.php?usuario=$nombreUsuarioLogin'</script>";
              }else{
                   echo ' <script language="javascript">alert("Contraseña incorrecta");</script> ';
+                  echo "<script>location.href='index.php'</script>"; 
              }
          }else{
              echo ' <script language="javascript">alert("Usuario no registrado");</script> ';
+             echo "<script>location.href='index.php'</script>";
          }
 ?>
 

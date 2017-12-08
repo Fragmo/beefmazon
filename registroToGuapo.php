@@ -50,6 +50,7 @@
                             
                         }else{
                             echo '<script language="javascript">alert("las contrasenas son incorrectas o no has rellenado los campos");</script>';
+                            echo "<script>location.href='registro.php'</script>";
                         }
 
 		

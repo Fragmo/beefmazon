@@ -36,8 +36,8 @@ require './VariablesSession.php';
             <div class="col-md-3"></div>
             <div class="col-md-6"><a href="pagina2.php"><h1 class="text-center">BeefMazon</h1></a></div>
             <div class="col-md-3">
-                <a href="usuario.php"><input type="button" class=" btn-primary" value="Tu menú,<?PHP echo $nombreUsuario?>" name="menuUsuario" /></a>
-                <a href="cerrarSesion.php"><input type="button" class="btn btn-danger" value="Salir" name="botonCerrarSesion" /></a>
+                <a href="usuario.php"><button class="btn btn-primary"  name="menuUsuario"><i class="fa fa-shopping-basket" aria-hidden="true"></i> Tu cesta,<?PHP echo $nombreUsuario?></button> </a>
+                <a href="cerrarSesion.php"><button type="button" class="btn btn-danger"  name="botonCerrarSesion"><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</button></a>
             </header>
          </div>
         
@@ -70,7 +70,7 @@ require './VariablesSession.php';
                             <div class="col-md-4">
                                 <img src="imagenes/$foto"
                                 <p>$nombre, $marca, $sexo, $precio </p>
-                          <a href="confirmarCompra.php?idProductoo=$idProducto"><input type="button" value="Confirmar" name="$i" /></a>
+                          <a href="confirmarCompra.php?idProductoo=$idProducto"><button class="btn btn-success"value="Confirmar" name="$i"><i class="fa fa-check" aria-hidden="true"></i> Confirmar</button></a>
                             </div>
                             
                         </div>

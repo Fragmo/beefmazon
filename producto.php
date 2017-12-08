@@ -54,8 +54,8 @@ $contrasena = $_SESSION['contraseña'];
             <div class="col-md-3"></div>
             <div class="col-md-6"><a href="pagina2.php"><h1 class="text-center">BeefMazon</h1></a></div>
             <div class="col-md-3">
-                <a href="usuario.php"><input type="button" class="btn btn-primary" value="Tu menú,<?PHP echo $nombreUsuario?>" name="menuUsuario" /></a>
-                <a href="cerrarSesion.php"><input type="button" class="btn btn-danger" value="Salir" name="botonCerrarSesion" /></a>
+                <a href="usuario.php"><button class="btn btn-primary"  name="menuUsuario"><i class="fa fa-shopping-basket" aria-hidden="true"></i> Tu cesta,<?PHP echo $nombreUsuario?></button> </a>
+                <a href="cerrarSesion.php"><button type="button" class="btn btn-danger"  name="botonCerrarSesion"><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</button></a>
 
         </div> 
         <div class="row">
@@ -70,7 +70,7 @@ $contrasena = $_SESSION['contraseña'];
                             Sexo: <?php echo $sexo ?><br>
                             Precio: <?php echo $precio ?> <br>
    <!--PONGO UN FORMULARIO PARA HACER QUE SE EJECUTE EL CODIGO DEL ISSET-->
-        <form method="Post"><input type="submit" value="Comprar" name="botonComprar" /></form>
+   <form method="Post"><input type="submit" class="btn btn-success" value="Comprar" name="botonComprar" /></form>
                
                         </div>
                     </div>
@@ -80,7 +80,7 @@ $contrasena = $_SESSION['contraseña'];
             </div>
         </div>
             <div class="col-md-4">
-                <a href="pagina2.php"><input type="button" value="Atras" name="botonAtras" /></a>
+
             </div>
             <div class="row">
                 <div class="col-md-12">

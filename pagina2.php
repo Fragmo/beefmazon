@@ -89,7 +89,7 @@ function realizaConsultaGeneral($arrayProductos){
         <div class="col-sm-4 ">
             <article class="col-item">
             <div class="pull-left " ><a href="producto.php?codigo='.$codigo.'"><img class="img-responsive" src="imagenes/'.$codigoFoto.'"/></a></div><br>
-            <div class="text-center">'.$nombre.''.$precio.' €,<br> '.$marca.',<br> '.$sexo.',<br> precio:'.$precioFiltro.'<br></div>
+            <div class="text-center">'.$nombre.'      '.$precio.'€,<br> '.$marca.',<br> '.$sexo.',<br> precio:'.$precioFiltro.'<br></div>
             </article>
         </div>
 ');
@@ -103,8 +103,8 @@ function realizaConsultaGeneral($arrayProductos){
             <div class="col-md-3"></div>
             <div class="col-md-6"><a href="pagina2.php"><h1 class="text-center">BeefMazon</h1></a></div>
             <div class="col-md-3">
-                <a href="usuario.php"><input type="button" class="btn btn-primary" value="Tu menú,<?PHP echo $nombreUsuario?>" name="menuUsuario" /></a>
-                <a href="cerrarSesion.php"><input type="button" class="btn btn-danger" value="Salir" name="botonCerrarSesion" /></a>
+                <a href="usuario.php"><button class="btn btn-primary"  name="menuUsuario"><i class="fa fa-shopping-basket" aria-hidden="true"></i> Tu cesta,<?PHP echo $nombreUsuario?></button> </a>
+                <a href="cerrarSesion.php"><button type="button" class="btn btn-danger"  name="botonCerrarSesion"><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</button></a>
 
             </div>
         </div>
@@ -114,29 +114,28 @@ function realizaConsultaGeneral($arrayProductos){
             <form name="formularioFiltro" method="POST">
                 <div class="col-md-12" >
                 <div clas class="col-md-2"></div>
-                <div class="col-md-2 text-center" id="contenedorListaDesplegableRopa" style="background-color: red; margin: 0;  " >
+                <div class="col-md-2 text-center" id="contenedorListaDesplegableRopa" style="background-color: #999999; margin: 0;  " >
                     <h3>Ropa</h3>
                     <select  name="desplegableRopa">
                     <option value=""></option>
                     <option value="camiseta">Camisetas</option>
-                    <option value="pantalones">Pantalones</option>
+                    <option value="pantalon">Pantalones</option>
                     <option value="calcetines">calcetines</option>
                     <option value="zapatos">Zapatos</option>
                 </select>
                     
                 </div>
                 
-                <div class="col-md-2 text-center" id="contenedorListaDesplegableSexo" style="background-color: green; margin: 0; " >
+                <div class="col-md-2 text-center" id="contenedorListaDesplegableSexo" style="background-color: #999999; margin: 0; " >
                     <h3>Sexo</h3>
                     <select name="desplegableSexo">
                         <option value=""></option>
                         <option value="hombre">Hombre</option>
                         <option value="mujer">Mujer</option>
-                        <option value="unisex">Unisex</option>
                     </select>
                 </div>
                 
-                <div class="col-md-2 text-center" id="contenedorListaPrecio" style="background-color: yellow ; margin: 0;">
+                <div class="col-md-2 text-center" id="contenedorListaPrecio" style="background-color: #999999; margin: 0;">
                     <h3>Precio</h3>
                     <select name="desplegablePrecio">
                         <option value=""></option>
@@ -146,7 +145,7 @@ function realizaConsultaGeneral($arrayProductos){
                     </select>
                 </div>
                 
-                <div class="col-md-2 text-center" id="contenedorListaMarca" style="background-color: blue; margin: 0;">
+                <div class="col-md-2 text-center" id="contenedorListaMarca" style="background-color: #999999; margin: 0;">
                     <h3>Marca</h3>
                     <select name="desplegableMarca">
                         <option value=""></option>
@@ -158,7 +157,7 @@ function realizaConsultaGeneral($arrayProductos){
                 </div>
                 <div clas class="col-md-2"></div>
             </div><!-- Fin del filtrado-->
-            <input style="margin-left: 48%;" type="submit" value="Buscar" name="botonFiltro" />
+            <input style="margin-left: 48%;" type="submit" value="Buscar" class="btn btn-info" name="botonFiltro" />
         </form><br/><br/><br/> 
             <!--PRODUCTOS-->
             <div class="row">
