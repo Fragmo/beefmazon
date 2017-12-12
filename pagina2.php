@@ -117,7 +117,7 @@ function realizaConsultaGeneral($arrayProductos){
                 <div class="col-md-2 text-center" id="contenedorListaDesplegableRopa" style="background-color: #999999; margin: 0;  " >
                     <h3>Ropa</h3>
                     <select  name="desplegableRopa">
-                    <option value=""></option>
+                    <option value="">Todo</option>
                     <option value="camiseta">Camisetas</option>
                     <option value="pantalon">Pantalones</option>
                     <option value="calcetines">calcetines</option>
