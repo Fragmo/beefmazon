@@ -68,8 +68,8 @@ require './VariablesSession.php';
                     print <<<hola
                         <div class="row">
                             <div class="col-md-4">
-                                <img src="imagenes/$foto"
-                                <p>$nombre, $marca, $sexo, $precio </p>
+                                <img style="margin-left: 50%;" src="imagenes/$foto"
+                                <p>$nombre, $marca, $sexo, $precio € </p>
                           <a href="confirmarCompra.php?idProductoo=$idProducto"><button class="btn btn-success"value="Confirmar" name="$i"><i class="fa fa-check" aria-hidden="true"></i> Confirmar</button></a>
                            <a href="cancelarCompra.php?idProductoo=$idProducto"><button class="btn btn-danger" style="margin-top: 4px;" value="Borrar" name="$i"><i class="fa fa-times" aria-hidden="true"></i> Cancelar</button></a>
                            </div>

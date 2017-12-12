@@ -70,17 +70,33 @@ $contrasena = $_SESSION['contraseña'];
                             Marca: <?php echo $marca ?> <br>
                             Sexo: <?php echo $sexo ?><br>
                             Precio: <?php echo $precio ?> <br>
-   <!--PONGO UN FORMULARIO PARA HACER QUE SE EJECUTE EL CODIGO DEL ISSET-->
+
    <?php 
-   $consultaStock = " SELECT COUNT(*) FROM `productos` WHERE id = $codigo and stock >0";
-   $ejecutaStock = mysqli_query($creaConexion, $consultaStock);
-   $arrayStock = mysqli_fetch_all($ejecutaStock);
-//   print_r($arrayStock);
-   if($arrayStock[0][0] >0){
-   print ' <form method="Post"><input type="submit" class="btn btn-success" value="Comprar" name="botonComprar" /></form>'  ;
-   }else{
-   print ' <button class=" btn disabled" name="botonStock">No hay stock <i class="fa fa-lock" aria-hidden="true"></i> </button>'  ;
-   }
+   ////////// SI SE PULSA EL BOTON COMPRAR
+           if(isset($_POST['botonComprar'])){
+            
+     ////////////ESTA CONSULTA ACTUALIZA LA CESTA DEL CLIENTE///////////////////// 
+            $consultaCompra= "INSERT INTO cesta  (idCliente, idProducto) VALUES ($id,$codigo)";
+            $consultaInsert = $creaConexion->query($consultaCompra);
+            if($creaConexion->errno){
+                //print_r("ESTA ES LA CONSULTA: ".$consultaCompra);
+                die("<p>no ha sido posible insertar datos en la tabla . $creaConexion->error <BR>");     
+            }else{
+ 
+          /////////CONSULTA QUE ACTUALIZA EL STOCK AL COMPRAR UN PRODUCTO/////////
+                $consultaActualizaStock = "UPDATE productos set productos.stock = productos.stock - 1 where id = $codigoProducto";
+//              UPDATE productos set productos.stock = productos.stock - (select count(cesta.idProducto) from cesta where cesta.idProducto = ".$_GET['idProductoo'].") where id = ".$_GET['idProductoo']."     
+                $ejecutaActualizaStock = $creaConexion->query($consultaActualizaStock);
+                 if($creaConexion->errno){die();}
+                echo ' <script language="javascript">alert("Este articulo se ha añadido a la cesta ");</script> ';
+                cargaProducto($codigo, $creaConexion);
+                
+                 }
+        }else{
+   
+                cargaProducto($codigo, $creaConexion);
+        }
+ 
    ?>
    
                
@@ -98,6 +114,7 @@ $contrasena = $_SESSION['contraseña'];
                 <div class="col-md-12">
                     <h2 class="text-center">Productos Relacionados</h2>
                     <?php 
+    //CARGA LOS PRODUCTOS RELACIONADOS (MISMO NOMBRE CUANDO TENGAN EL MISMO NOMBRE (CAMISETA, PANTALON ETC) Y MARCA)
                 $consultaProductosRelacionados = "SELECT * FROM productos WHERE nombre = '$nombre' or marca='$marca'";
                 $ejecutarProductosRelacionados = $creaConexion->query($consultaProductosRelacionados);
                 $arrayProductosRelacionados = mysqli_fetch_all($ejecutarProductosRelacionados);
@@ -123,24 +140,20 @@ hola;
             </div>
         </div> 
         <?php 
-        if(isset($_POST['botonComprar'])){
-            
-     ////////////ESTA CONSULTA ACTUALIZA LA CESTA DEL CLIENTE///////////////////// 
-            $consultaCompra= "INSERT INTO cesta  (idCliente, idProducto) VALUES ($id,$codigo)";
-            $consultaInsert = $creaConexion->query($consultaCompra);
-            if($creaConexion->errno){
-                //print_r("ESTA ES LA CONSULTA: ".$consultaCompra);
-                die("<p>no ha sido posible insertar datos en la tabla . $creaConexion->error <BR>");     
+        // CARGA EL PRODUCTO EN LA PAGINA CON TODAS LAS CARACTERISTICAS
+        function cargaProducto($codigo, $creaConexion){
+            $consultaStock = " SELECT COUNT(*) FROM `productos` WHERE id = $codigo and stock >0";
+            $ejecutaStock = mysqli_query($creaConexion, $consultaStock);
+            $arrayStock = mysqli_fetch_all($ejecutaStock);
+            //   print_r($arrayStock);
+            if($arrayStock[0][0] >0){
+//             PONGO UN FORMULARIO PARA HACER QUE SE EJECUTE EL CODIGO DEL ISSET
+                print ' <form method="Post"><input type="submit" class="btn btn-success" value="Comprar" name="botonComprar" /></form>'  ;
             }else{
- 
-          /////////CONSULTA QUE ACTUALIZA EL STOCK AL COMPRAR UN PRODUCTO/////////
-                $consultaActualizaStock = "UPDATE productos set productos.stock = productos.stock - 1 where id = $codigoProducto";
-//              UPDATE productos set productos.stock = productos.stock - (select count(cesta.idProducto) from cesta where cesta.idProducto = ".$_GET['idProductoo'].") where id = ".$_GET['idProductoo']."     
-                $ejecutaActualizaStock = $creaConexion->query($consultaActualizaStock);
-                 if($creaConexion->errno){die();}
-                echo ' <script language="javascript">alert("Este articulo se ha añadido a la cesta ");</script> ';
+                print ' <button class=" btn disabled" name="botonStock">No hay stock <i class="fa fa-lock" aria-hidden="true"></i> </button>'  ;
             }
-
-        } ?>
+        }               
+                     
+ ?>
     </body>
 </html>
