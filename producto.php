@@ -21,6 +21,7 @@ $consultaEjecutada = $creaConexion->query($consultaSQL);
 $ArrayProductoAqui = mysqli_fetch_all($consultaEjecutada);
 
 // VARIABLES PRODUCTO
+$codigoProducto =$ArrayProductoAqui[0][0];
 $nombre = $ArrayProductoAqui[0][1];
 $precio = $ArrayProductoAqui[0][2];
 $stock = $ArrayProductoAqui[0][3];
@@ -123,15 +124,23 @@ hola;
         </div> 
         <?php 
         if(isset($_POST['botonComprar'])){
+            
+     ////////////ESTA CONSULTA ACTUALIZA LA CESTA DEL CLIENTE///////////////////// 
             $consultaCompra= "INSERT INTO cesta  (idCliente, idProducto) VALUES ($id,$codigo)";
             $consultaInsert = $creaConexion->query($consultaCompra);
             if($creaConexion->errno){
-                print_r("ESTA ES LA CONSULTA: ".$consultaCompra);
-                die("<p>no ha sido posible insertar datos en la tabla . $creaConexion->error <BR>");
-                
+                //print_r("ESTA ES LA CONSULTA: ".$consultaCompra);
+                die("<p>no ha sido posible insertar datos en la tabla . $creaConexion->error <BR>");     
             }else{
+ 
+          /////////CONSULTA QUE ACTUALIZA EL STOCK AL COMPRAR UN PRODUCTO/////////
+                $consultaActualizaStock = "UPDATE productos set productos.stock = productos.stock - 1 where id = $codigoProducto";
+//              UPDATE productos set productos.stock = productos.stock - (select count(cesta.idProducto) from cesta where cesta.idProducto = ".$_GET['idProductoo'].") where id = ".$_GET['idProductoo']."     
+                $ejecutaActualizaStock = $creaConexion->query($consultaActualizaStock);
+                 if($creaConexion->errno){die();}
                 echo ' <script language="javascript">alert("Este articulo se ha añadido a la cesta ");</script> ';
             }
+
         } ?>
     </body>
 </html>
