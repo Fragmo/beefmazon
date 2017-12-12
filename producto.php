@@ -70,7 +70,18 @@ $contrasena = $_SESSION['contraseña'];
                             Sexo: <?php echo $sexo ?><br>
                             Precio: <?php echo $precio ?> <br>
    <!--PONGO UN FORMULARIO PARA HACER QUE SE EJECUTE EL CODIGO DEL ISSET-->
-   <form method="Post"><input type="submit" class="btn btn-success" value="Comprar" name="botonComprar" /></form>
+   <?php 
+   $consultaStock = " SELECT COUNT(*) FROM `productos` WHERE id = $codigo and stock >0";
+   $ejecutaStock = mysqli_query($creaConexion, $consultaStock);
+   $arrayStock = mysqli_fetch_all($ejecutaStock);
+//   print_r($arrayStock);
+   if($arrayStock[0][0] >0){
+   print ' <form method="Post"><input type="submit" class="btn btn-success" value="Comprar" name="botonComprar" /></form>'  ;
+   }else{
+   print ' <button class=" btn disabled" name="botonStock">No hay stock <i class="fa fa-lock" aria-hidden="true"></i> </button>'  ;
+   }
+   ?>
+   
                
                         </div>
                     </div>
