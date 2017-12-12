@@ -71,7 +71,8 @@ require './VariablesSession.php';
                                 <img src="imagenes/$foto"
                                 <p>$nombre, $marca, $sexo, $precio </p>
                           <a href="confirmarCompra.php?idProductoo=$idProducto"><button class="btn btn-success"value="Confirmar" name="$i"><i class="fa fa-check" aria-hidden="true"></i> Confirmar</button></a>
-                            </div>
+                           <a href="cancelarCompra.php?idProductoo=$idProducto"><button class="btn btn-danger" style="margin-top: 4px;" value="Borrar" name="$i"><i class="fa fa-times" aria-hidden="true"></i> Cancelar</button></a>
+                           </div>
                             
                         </div>
 hola;
@@ -98,6 +99,9 @@ hola;
       <?php  
          if(isset($_GET['confirmaCompra'])){
          echo ' <script language="javascript">alert("Pedido realizado");</script> ';
+        }
+        if(isset($_GET['cancelaCompra'])){
+         echo ' <script language="javascript">alert("Articulo borrado");</script> ';
         }
         
         ?>
