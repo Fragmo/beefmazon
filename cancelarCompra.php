@@ -20,10 +20,14 @@ require './VariablesSession.php';
                 $consultaDelete = $creaConexion->query($consultaSQL);
             if($creaConexion->errno){
             //    print_r("ESTA ES LA CONSULTA: ".$consultaCompra);
-                die("<p>no ha sido posible comprar el articulo . $creaConexion->error <BR>");
+                die("<p>no ha sido posible cancelar el pedido. $creaConexion->error <BR>");
                 
             }else{
-               // $consultaActualizaStock = ""
+    /////////CONSULTA QUE ACTUALIZA EL STOCK AL COMPRAR UN PRODUCTO/////////
+                $consultaActualizaStock = "UPDATE productos set productos.stock = productos.stock + 1 where id = ".$_GET['idProductoo']."";
+//              UPDATE productos set productos.stock = productos.stock - (select count(cesta.idProducto) from cesta where cesta.idProducto = ".$_GET['idProductoo'].") where id = ".$_GET['idProductoo']."     
+                $ejecutaActualizaStock = $creaConexion->query($consultaActualizaStock);
+                 if($creaConexion->errno){die();}
             }
       echo "<script>location.href='usuario.php?cancelaCompra=true'</script>";
 ?>
