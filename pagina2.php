@@ -129,7 +129,7 @@ function realizaConsultaGeneral($arrayProductos){
                 <div class="col-md-2 text-center" id="contenedorListaDesplegableSexo" style="background-color: #999999; margin: 0; " >
                     <h3>Sexo</h3>
                     <select name="desplegableSexo">
-                        <option value=""></option>
+                        <option value="">Todo</option>
                         <option value="hombre">Hombre</option>
                         <option value="mujer">Mujer</option>
                     </select>
@@ -138,7 +138,7 @@ function realizaConsultaGeneral($arrayProductos){
                 <div class="col-md-2 text-center" id="contenedorListaPrecio" style="background-color: #999999; margin: 0;">
                     <h3>Precio</h3>
                     <select name="desplegablePrecio">
-                        <option value=""></option>
+                        <option value="">Todo</option>
                         <option value="caro">Caro</option>
                         <option value="medio">Medio</option>
                         <option value="barato">Barato</option>
@@ -148,7 +148,7 @@ function realizaConsultaGeneral($arrayProductos){
                 <div class="col-md-2 text-center" id="contenedorListaMarca" style="background-color: #999999; margin: 0;">
                     <h3>Marca</h3>
                     <select name="desplegableMarca">
-                        <option value=""></option>
+                        <option value="">Todo</option>
                         <option value="adidas">Adidas</option>
                         <option value="nike">Nike</option>
                         <option value="newBalance">New Balance</option>
