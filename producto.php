@@ -69,7 +69,7 @@ $contrasena = $_SESSION['contraseña'];
                             Nombre: <?php echo $nombre ?> <br>
                             Marca: <?php echo $marca ?> <br>
                             Sexo: <?php echo $sexo ?><br>
-                            Precio: <?php echo $precio ?> <br>
+                            Precio: <?php echo $precio.' €' ?> <br>
 
    <?php 
    ////////// SI SE PULSA EL BOTON COMPRAR
